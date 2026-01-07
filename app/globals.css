@@ -124,7 +124,7 @@
     }
 
     h3 {
-        @apply font-schibsted-grotesk text-2xl font-bold;
+        @apply font-schibsted-grotesk text-2xl ;
     }
 
     ul {
