@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface Event extends Document {
+export interface IEvent extends Document {
   title: string;
   slug: string;
   description: string;
@@ -19,7 +19,7 @@ export interface Event extends Document {
   updatedAt: Date;
 }
 
-const EventSchema = new Schema<Event>(
+const EventSchema = new Schema<IEvent>(
   {
     title: {
       type: String,
@@ -47,7 +47,7 @@ const EventSchema = new Schema<Event>(
     },
     image: {
       type: String,
-      required: [true, "Image URL is required"],
+      // required: [true, "Image URL is required"],
       trim: true,
     },
     venue: {
@@ -83,7 +83,7 @@ const EventSchema = new Schema<Event>(
     },
     agenda: {
       type: [String],
-      required: [true, "Agenda is required"],
+      // required: [true, "Agenda is required"],
       validate: {
         validator: (v: string[]) => v.length > 0,
         message: "At least one agenda item is required",
@@ -96,7 +96,7 @@ const EventSchema = new Schema<Event>(
     },
     tags: {
       type: [String],
-      required: [true, "Tags are required"],
+      // required: [true, "Tags are required"],
       validate: {
         validator: (v: string[]) => v.length > 0,
         message: "At least one tag is required",
@@ -109,7 +109,7 @@ const EventSchema = new Schema<Event>(
 );
 // Pre-save hook for slug generation and data normalization
 EventSchema.pre("save", function (next) {
-  const event = this as Event;
+  const event = this as IEvent;
 
   if (event.isModified("title") || event.isNew) {
     event.slug = generateSlug(event.title);
@@ -185,6 +185,6 @@ EventSchema.index({ slug: 1 }, { unique: true });
 // Create compound index for common queries
 EventSchema.index({ date: 1, mode: 1 });
 
-const Event = mongoose.model<Event>("Event", EventSchema);
+const Event = mongoose.model<IEvent>("Event", EventSchema);
 
 export default Event;
