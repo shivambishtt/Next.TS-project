@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export interface EventCardProps {
-  eventId?: number;
+  slug: string;
   title: string;
   description: string;
   time: string;
@@ -11,7 +11,7 @@ export interface EventCardProps {
 }
 
 function EventCard({
-  eventId,
+  slug,
   title,
   description,
   time,
@@ -22,7 +22,7 @@ function EventCard({
     <div className="mt-4">
       <Link
         className="flex items-center justify-between text-center"
-        href={`/events/${eventId}`}
+        href={`/events/${slug}`}
       >
         <h3 className="text-3xl font-semibold">{title}</h3>
 
