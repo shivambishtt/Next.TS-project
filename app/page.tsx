@@ -1,8 +1,12 @@
 import FindEventButton from "@/components/FindEventButton/FindEventButton";
 import EventCard from "@/components/EventCard";
-import events from "@/lib/data";
+import { IEvent } from "@/models/EventModel";
 
-function page() {
+async function page() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/events`);
+
+  const { events } = await response.json();
+
   return (
     <>
       <section>
@@ -16,13 +20,16 @@ function page() {
         </p>
         <FindEventButton />
         {/* Events Section */}
-        <div className="mt-20">
+
+        <div className="mt-20 bg-gray-300">
           <h2 className="text-2xl font-semibold">Featured Events</h2>
           <br />
           <ul>
-            {events.map((event) => {
-              return <EventCard key={event.eventId} {...event} />;
-            })}
+            {events &&
+              events.length > 0 &&
+              events.map((event: IEvent) => {
+                return <EventCard key={event.slug} {...event} />;
+              })}
           </ul>
         </div>
       </section>

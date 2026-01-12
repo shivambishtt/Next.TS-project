@@ -2,31 +2,29 @@ import Image from "next/image";
 import Link from "next/link";
 
 export interface EventCardProps {
-  eventId: number;
-  eventTitle: string;
-  eventDescription: string;
-  eventDuration: string;
-  eventLocation: string;
-  eventNiche?: string;
-  eventImage: string;
+  eventId?: number;
+  title: string;
+  description: string;
+  time: string;
+  location: string;
+  image: string;
 }
 
 function EventCard({
   eventId,
-  eventTitle,
-  eventDescription,
-  eventDuration,
-  eventLocation,
-  eventNiche,
-  eventImage,
+  title,
+  description,
+  time,
+  location,
+  image,
 }: EventCardProps) {
   return (
     <div className="mt-4">
       <Link
         className="flex items-center justify-between text-center"
-        href={`/events${eventId}`}
+        href={`/events/${eventId}`}
       >
-        <h3 className="text-3xl font-semibold">{eventTitle}</h3>
+        <h3 className="text-3xl font-semibold">{title}</h3>
 
         <div className="flex gap-2 items-center">
           <Image
@@ -35,7 +33,7 @@ function EventCard({
             width={15}
             height={15}
           />
-          <h4>{eventDuration}</h4>
+          <h4>{time}</h4>
         </div>
 
         <div className="flex gap-2">
@@ -45,13 +43,13 @@ function EventCard({
             width={15}
             height={15}
           />
-          <p>{eventLocation}</p>
+          <p>{location}</p>
         </div>
       </Link>
 
       <div className="flex gap-5 ">
-        <Image src={eventImage} alt="eventImage" width={500} height={250} />
-        <p className="top-2 ">{eventDescription}</p>
+        <Image src={image} alt="eventImage" width={500} height={250} />
+        <p className="top-2 ">{description}</p>
       </div>
 
       <br />
