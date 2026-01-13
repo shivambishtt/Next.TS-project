@@ -21,7 +21,7 @@ async function page() {
         <FindEventButton />
         {/* Events Section */}
 
-        <div className="mt-20 bg-gray-300">
+        <div className="mt-20">
           <h2 className="text-2xl font-semibold">Featured Events</h2>
           <br />
           <ul>
