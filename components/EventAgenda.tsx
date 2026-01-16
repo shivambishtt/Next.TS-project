@@ -4,7 +4,7 @@ function EventAgenda({ agendas }: { agendas: string[] }) {
       <h2 className="text-2xl font-semibold">Agenda</h2>
       <ul>
         {agendas.map((agenda, id) => {
-          return <li key={id}>{agenda}</li>;
+          return <li className="list-none" key={id}>{agenda}</li>;
         })}
       </ul>
     </div>

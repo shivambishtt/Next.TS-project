@@ -4,6 +4,8 @@ import Image from "next/image";
 import EventDetailItem from "@/components/EventDetailItems";
 import EventAgenda from "@/components/EventAgenda";
 import EventTags from "@/components/EventTags";
+import Booking from "@/models/BookingModel";
+import BookEvent from "@/components/BookEvent";
 
 interface EventResponse {
   event: IEvent;
@@ -36,6 +38,8 @@ async function EventDetails({ params }: { params: Promise<{ slug: string }> }) {
     return notFound();
   }
 
+  const bookings = 10;
+
   return (
     <section>
       <div className="w-full max-w-3xl">
@@ -47,7 +51,13 @@ async function EventDetails({ params }: { params: Promise<{ slug: string }> }) {
 
       <div className="event-details flex justify-between">
         <div className="event-details-left w-full max-w-3xl">
-          <Image className="mt-2" src={image} height={700} width={700} alt="eventImage" />
+          <Image
+            className="mt-2"
+            src={image}
+            height={700}
+            width={700}
+            alt="eventImage"
+          />
 
           <section className="mt-4">
             <h2 className="text-2xl font-semibold">Overview</h2>
@@ -93,14 +103,20 @@ async function EventDetails({ params }: { params: Promise<{ slug: string }> }) {
             <p>{organizer}</p>
           </section>
 
-          <EventTags  tags={JSON.parse(tags[0])} />
+          <EventTags tags={JSON.parse(tags[0])} />
         </div>
 
-        <div className="event-details-right">
-          <aside className="booking-form">
-            <p className="font-semibold ">Book Event </p>
-          </aside>
-        </div>
+        <aside className="booking-form">
+          <div className="space-y-3 signup-card">
+            <h2 className="font-semibold text-2xl">Book your spot </h2>
+            {bookings > 0 ? (
+              <p>Join {bookings} people who have already booked their spot</p>
+            ) : (
+              <p className="text-sm">Be the first to book your spot </p>
+            )}
+            <BookEvent />
+          </div>
+        </aside>
       </div>
     </section>
   );
