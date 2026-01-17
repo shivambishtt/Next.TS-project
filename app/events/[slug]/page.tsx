@@ -4,7 +4,6 @@ import Image from "next/image";
 import EventDetailItem from "@/components/EventDetailItems";
 import EventAgenda from "@/components/EventAgenda";
 import EventTags from "@/components/EventTags";
-import Booking from "@/models/BookingModel";
 import BookEvent from "@/components/BookEvent";
 
 interface EventResponse {
@@ -107,7 +106,7 @@ async function EventDetails({ params }: { params: Promise<{ slug: string }> }) {
         </div>
 
         <aside className="booking-form">
-          <div className="space-y-3 signup-card">
+          <div className="space-y-3 signup-card p-4 bg-[#0c2e249e]">
             <h2 className="font-semibold text-2xl">Book your spot </h2>
             {bookings > 0 ? (
               <p>Join {bookings} people who have already booked their spot</p>

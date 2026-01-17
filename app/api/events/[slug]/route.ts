@@ -1,9 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import {NextResponse } from "next/server";
 import connectDB from "@/lib/database";
 import Event from "@/models/EventModel";
 
 export async function GET(
-  req: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
